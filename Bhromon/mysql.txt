@@ -1,0 +1,148 @@
+CREATE DATABASE booking_system;
+USE booking_system;
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    name VARCHAR(200) NOT NULL, 
+    email_address VARCHAR(260) NOT NULL,
+    password VARCHAR(300) NOT NULL,
+    phone_number VARCHAR(11) NOT NULL
+);
+
+CREATE TABLE administrators (
+    administrator_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    name VARCHAR(200) NOT NULL, 
+    email_address VARCHAR(300) NOT NULL, 
+    password VARCHAR(300) NOT NULL,
+    phone_number VARCHAR(11) NOT NULL
+);
+
+CREATE TABLE spot_owners (
+    owners_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    name VARCHAR(250) NOT NULL, 
+    email_address VARCHAR(265) NOT NULL, 
+    password VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(11) NOT NULL
+);
+
+CREATE TABLE location (
+    location_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    description VARCHAR(5000) NOT NULL,
+    price_per_seats INT NOT NULL,
+    total_available_seats INT NOT NULL
+);
+
+CREATE TABLE Booking (
+    booking_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    location_id INT NOT NULL,
+    number_of_seats INT NOT NULL,
+    booking_date DATE NOT NULL,
+    duration INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT,
+    FOREIGN KEY (location_id) REFERENCES Location(location_id) ON DELETE RESTRICT
+);
+CREATE TABLE balance (
+    user_id INT NOT NULL,
+    amount INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT
+);
+CREATE TABLE Payment (
+    transaction_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    amount INT NOT NULL,
+    payment_type VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    payment_status BOOLEAN NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT
+);
+CREATE TABLE save_location(
+    user_id INT NOT NULL,
+    location_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT,
+    FOREIGN KEY (location_id) REFERENCES Location(location_id) ON DELETE RESTRICT
+);
+
+
+-- Populating the location table with tourist spots by country
+
+INSERT INTO location (name, description, price_per_seats, total_available_seats) VALUES
+('France',
+ 'Known for its romantic capital, Paris, iconic landmarks like the Eiffel Tower, rich art, fashion, and gourmet cuisine.',
+ 50,
+ 5000),
+
+('Italy',
+ 'Famous for historical landmarks like the Colosseum, Leaning Tower of Pisa, and the beautiful canals of Venice.',
+ 45,
+ 4000),
+
+('Japan',
+ 'A blend of ancient traditions and cutting-edge technology, featuring Mount Fuji, cherry blossoms, and vibrant cities like Tokyo.',
+ 60,
+ 3500),
+
+('USA',
+ 'A diverse country offering everything from New York City skyscrapers to the Grand Canyon and Hollywood in Los Angeles.',
+ 55,
+ 8000),
+
+('Australia',
+ 'Known for the Sydney Opera House, Great Barrier Reef, and stunning outback landscapes.',
+ 70,
+ 3000),
+
+('Brazil',
+ 'Home to the Amazon rainforest, vibrant Carnival festivals, and the Christ the Redeemer statue in Rio.',
+ 40,
+ 4000),
+
+('Egypt',
+ 'Famous for the ancient Pyramids of Giza, the Sphinx, and the Nile River.',
+ 35,
+ 3500),
+
+('India',
+ 'Known for the Taj Mahal, diverse culture, colorful festivals, and rich heritage.',
+ 30,
+ 6000),
+
+('Canada',
+ 'Features breathtaking landscapes, Niagara Falls, Banff National Park, and multicultural cities.',
+ 50,
+ 4500),
+
+('United Kingdom',
+ 'Rich history and architecture, with landmarks like Buckingham Palace, Big Ben, and Stonehenge.',
+ 55,
+ 5000),
+
+('China',
+ 'Home to the Great Wall of China, the Forbidden City, and modern cities like Shanghai and Beijing.',
+ 45,
+ 7000),
+
+('South Africa',
+ 'Renowned for safaris, Table Mountain, and stunning beaches.',
+ 40,
+ 2500),
+
+('Thailand',
+ 'Known for tropical beaches, royal palaces, ancient ruins, and ornate temples.',
+ 35,
+ 4000),
+
+('Greece',
+ 'Famous for ancient ruins like the Parthenon, beautiful islands such as Santorini, and rich history.',
+ 50,
+ 3000),
+
+('UAE',
+ 'Known for luxurious cities like Dubai and Abu Dhabi, the Burj Khalifa, and desert safaris.',
+ 75,
+ 3500);
+
+
+INSERT INTO administrators (name, email_address, password, phone_number) 
+VALUES ('Admin', 'admin@example.com', 'admin123', '01962397057');

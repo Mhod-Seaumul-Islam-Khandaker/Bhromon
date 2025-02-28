@@ -1,0 +1,84 @@
+/* Style for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-bottom: 80px; /* Prevent content from overlapping footer */
+}
+
+/* Style for the welcome message */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-top: 50px;
+    text-align: center;
+}
+
+h1 span {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Paragraph text styling */
+p {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Links container */
+.top-links {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+/* Common link styling */
+a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Logout button styling */
+.logout {
+    background-color: #FF4B5C;
+}
+
+.logout:hover {
+    background-color: #d93848;
+}
+
+/* Book Now button styling */
+.booking {
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #28a745;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.booking:hover {
+    background-color: #218838;
+}
